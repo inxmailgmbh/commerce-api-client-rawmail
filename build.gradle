@@ -1,0 +1,47 @@
+buildscript {
+    repositories {
+        maven {
+            url 'https://repo.srv.inxmail.de/artifactory/xcom.resolve'
+        }
+
+    }
+    dependencies {
+        //Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
+        classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4+"
+    }
+}
+
+group 'com.inxmail.xcom.api'
+version '1.0.0'
+
+apply plugin: 'java'
+apply plugin: "com.jfrog.artifactory"
+
+sourceCompatibility = 1.8
+
+
+
+
+artifactory {
+    contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
+    publish {
+        repository {
+            repoKey = 'xcom.release'
+            username = "${artifactory_user}"
+            password = "${artifactory_password}"
+            maven = true
+
+        }
+    }
+    resolve {
+        repository {
+            repoKey = 'xcom.resolve'
+            maven = true
+
+        }
+    }
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
