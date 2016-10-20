@@ -22,17 +22,8 @@ import java.io.Serializable;
  */
 public class Message implements Serializable, Cloneable {
 
-    /**
-     * <p>
-     * The subject of the message: A short summary of the content, which will appear in the recipient's inbox.
-     * </p>
-     */
     private Content subject;
-    /**
-     * <p>
-     * The message body.
-     * </p>
-     */
+
     private Body body;
 
     /**

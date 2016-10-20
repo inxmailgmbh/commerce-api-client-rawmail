@@ -26,17 +26,8 @@ import java.io.Serializable;
  */
 public class Content implements Serializable, Cloneable {
 
-    /**
-     * <p>
-     * The textual data of the content.
-     * </p>
-     */
     private String data;
-    /**
-     * <p>
-     * The character set of the content.
-     * </p>
-     */
+
     private String charset;
 
     /**

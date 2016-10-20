@@ -31,23 +31,10 @@ import java.util.List;
  */
 public class Destination implements Serializable, Cloneable {
 
-    /**
-     * <p>
-     * The To: field(s) of the message.
-     * </p>
-     */
     private List<String> toAddresses;
-    /**
-     * <p>
-     * The CC: field(s) of the message.
-     * </p>
-     */
+
     private List<String> ccAddresses;
-    /**
-     * <p>
-     * The BCC: field(s) of the message.
-     * </p>
-     */
+
     private List<String> bccAddresses;
 
     /**
@@ -63,7 +50,7 @@ public class Destination implements Serializable, Cloneable {
      *
      * @param toAddresses The To: field(s) of the message.
      */
-    public Destination( java.util.List<String> toAddresses ) {
+    public Destination( List<String> toAddresses ) {
         setToAddresses( toAddresses );
     }
 
@@ -160,7 +147,7 @@ public class Destination implements Serializable, Cloneable {
      * @param ccAddresses The CC: field(s) of the message.
      */
 
-    public void setCcAddresses( java.util.Collection<String> ccAddresses ) {
+    public void setCcAddresses( Collection<String> ccAddresses ) {
         if( ccAddresses == null ) {
             this.ccAddresses = null;
             return;
@@ -230,7 +217,7 @@ public class Destination implements Serializable, Cloneable {
      * @param bccAddresses The BCC: field(s) of the message.
      */
 
-    public void setBccAddresses( java.util.Collection<String> bccAddresses ) {
+    public void setBccAddresses( Collection<String> bccAddresses ) {
         if( bccAddresses == null ) {
             this.bccAddresses = null;
             return;
