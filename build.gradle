@@ -11,21 +11,52 @@ buildscript {
     }
 }
 
-group 'com.inxmail.xcom.api'
-version '1.0.0'
+ext {
+    env = System.getenv()
+}
+
+group 'com.inxmail.commerce.api'
+version '0.1.0'
 
 apply plugin: 'java'
+apply plugin: 'maven-publish'
 apply plugin: "com.jfrog.artifactory"
 
 sourceCompatibility = 1.8
 
 dependencies {
     compile group: 'com.sun.mail', name: 'javax.mail', version: '1.5.6'
+    compile "commons-io:commons-io:2.4"
     compile "org.glassfish.jersey.core:jersey-client:2.23.2"
     compile "org.glassfish.jersey.media:jersey-media-json-jackson:2.23.2"
 }
 
+task sourceJar(type: Jar) {
+    from sourceSets.main.allJava
+}
 
+task javadocJar(type: Jar) {
+    from javadoc
+}
+
+assemble.dependsOn sourceJar
+assemble.dependsOn javadocJar
+
+publishing {
+    publications {
+        jar(MavenPublication) {
+            from components.java
+
+            artifact sourceJar {
+                classifier "sources"
+            }
+
+            artifact javadocJar {
+                classifier "javadoc"
+            }
+        }
+    }
+}
 
 artifactory {
     contextUrl = "${artifactory_contextUrl}"   //The base Artifactory URL if not overridden by the publisher/resolver
@@ -37,6 +68,9 @@ artifactory {
             maven = true
 
         }
+        defaults {
+            publications 'jar'
+        }
     }
     resolve {
         repository {
@@ -45,8 +79,27 @@ artifactory {
 
         }
     }
+    clientConfig.info.buildName = artifactoryBuildName()
+    clientConfig.info.buildNumber = artifactoryBuildNum()
+    clientConfig.includeEnvVars = true
+    clientConfig.info.licenseControl.runChecks = true
+    clientConfig.info.licenseControl.includePublishedArtifacts = true
+    clientConfig.info.licenseControl.autoDiscover = true
 }
 
-dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+def artifactoryBuildNum() {
+    def num = []
+    if( env.BUILD_NUMBER )
+        num << env.BUILD_NUMBER
+    else if( env.SOURCE_BUILD_NUMBER )
+        num << env.SOURCE_BUILD_NUMBER
+    if( !num )
+        num << System.currentTimeMillis()
+    return num.join( "-" )
+}
+
+def artifactoryBuildName() {
+    if( env.JOB_NAME )
+        return env.JOB_NAME else
+        return "xcom.api-client-rawmail.workflow"
 }
