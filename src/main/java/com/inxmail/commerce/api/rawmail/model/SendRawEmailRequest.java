@@ -35,7 +35,7 @@ public class SendRawEmailRequest implements Serializable, Cloneable {
      * Constructs a new SendRawEmailRequest object. Callers should use the setter or fluent setter (with...) methods to
      * initialize any additional object members.
      *
-     * @param rawMessage The raw message in RFC 822 format. The client is responsible for ensuring the following:</p>
+     * @param rawMessage The raw message in RFC 822 format. The client is responsible for ensuring the following:
      *                   <ul>
      *                   <li>
      *                   <p>

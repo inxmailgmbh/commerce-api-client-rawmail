@@ -50,7 +50,7 @@ public class RawMessage implements Serializable, Cloneable {
      * </p>
      *
      * @return The raw data of the message. The client must ensure that the message format complies with Internet email
-     * standards regarding email header fields, MIME types, MIME encoding, and base64 encoding.</p>
+     * standards regarding email header fields, MIME types, MIME encoding, and base64 encoding.
      */
 
     public byte[] getData() {
@@ -64,7 +64,7 @@ public class RawMessage implements Serializable, Cloneable {
      * </p>
      *
      * @return The raw data of the message. The client must ensure that the message format complies with Internet email
-     * standards regarding email header fields, MIME types, MIME encoding, and base64 encoding.</p>
+     * standards regarding email header fields, MIME types, MIME encoding, and base64 encoding.
      */
     public InputStream getInputStream() {
         return is;
@@ -80,7 +80,7 @@ public class RawMessage implements Serializable, Cloneable {
      * </p>
      *
      * @param data The raw data of the message. The client must ensure that the message format complies with Internet email
-     *             standards regarding email header fields, MIME types, MIME encoding, and base64 encoding.</p>
+     *             standards regarding email header fields, MIME types, MIME encoding, and base64 encoding.
      * @return Returns a reference to this object so that method calls can be chained together.
      */
 
@@ -100,7 +100,7 @@ public class RawMessage implements Serializable, Cloneable {
      * </p>
      *
      * @param is The raw data of the message. The client must ensure that the message format complies with Internet email
-     *           standards regarding email header fields, MIME types, MIME encoding, and base64 encoding.</p>
+     *           standards regarding email header fields, MIME types, MIME encoding, and base64 encoding.
      * @return Returns a reference to this object so that method calls can be chained together.
      */
     public RawMessage withInputStream( InputStream is ) {
