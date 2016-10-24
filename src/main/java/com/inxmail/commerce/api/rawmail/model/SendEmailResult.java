@@ -34,6 +34,7 @@ public class SendEmailResult implements Serializable, Cloneable {
     @JsonCreator( mode = JsonCreator.Mode.PROPERTIES )
     public SendEmailResult( @JsonProperty( "relaySendingId" ) String relaySendingId, @JsonProperty( "acceptedDate" ) Date acceptedDate ) {
         this.relaySendingId = relaySendingId;
+        this.acceptedDate = acceptedDate;
     }
 
     /**

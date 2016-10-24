@@ -39,13 +39,7 @@ public class SendRawmailJerseyClient implements SendRawmailClient {
             e.printStackTrace();
         }
 
-        Response response = endpoint.request( MediaType.APPLICATION_JSON_TYPE ).post( Entity.entity( req, MediaType.APPLICATION_JSON_TYPE ) );
-        if( response.getStatusInfo().getFamily() == Response.Status.Family.SUCCESSFUL ) {
-            return response.readEntity( SendEmailResult.class );
-        }
-        else {
-            throw new RuntimeException( "Request rejected: " + response.getStatusInfo() );
-        }
+        return endpoint.request( MediaType.APPLICATION_JSON_TYPE ).post( Entity.entity( req, MediaType.APPLICATION_JSON_TYPE ), SendEmailResult.class );
     }
 
     @Override
