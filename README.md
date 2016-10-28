@@ -74,12 +74,12 @@ Example:
 
 ```
 RawMessage rawMessage = new RawMessage().withInputStream( new FileInputStream( "email.txt" ) );
-SendRawEmailRequest request1 = new SendRawEmailRequest( rawMessage );
+SendRawEmailRequest request = new SendRawEmailRequest( rawMessage );
 ```
 
 Creating a client connection to the Inxmail Commerce API
 --------------------------------------------------------
-All operations on the Inxmail Commerce API target a single space. 
+All operations on the Inxmail Commerce API target a single space, identified by a Space ID.
 Connecting to the Inxmail Commerce API requires an API key that can be obtained from the space management page.
 
 Proxies and timeouts can be configured by setting up an instance of `HttpConfiguration`.
