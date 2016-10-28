@@ -20,7 +20,7 @@ import java.util.List;
 
 /**
  * <p>
- * Represents a request to send a single email that is defined using <code>Message</code> and related classes.
+ * Represents a request to send a single email that is defined using {@link Message} and related classes.
  * </p>
  */
 public class SendEmailRequest implements Serializable, Cloneable {
@@ -71,7 +71,7 @@ public class SendEmailRequest implements Serializable, Cloneable {
      * </p>
      *
      * @param source The email address that is sending the email.
-     *
+     *               <p>
      *               <p>
      *               In all cases, the email address must be 7-bit ASCII. If the text must contain any other characters, then
      *               you must use MIME encoded-word syntax (RFC 2047) instead of a literal string. MIME encoded-word syntax
