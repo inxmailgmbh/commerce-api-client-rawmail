@@ -16,11 +16,12 @@ ext {
 }
 
 group 'com.inxmail.commerce.api'
-version '0.9.4'
+version '0.9.5'
 
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 apply plugin: "com.jfrog.artifactory"
+apply plugin: 'java-library-distribution'
 
 sourceCompatibility = 1.8
 
@@ -32,12 +33,25 @@ dependencies {
     compile "org.glassfish.jersey.connectors:jersey-apache-connector:2.23.2"
 }
 
-task sourceJar(type: Jar) {
+task sourceJar( type: Jar ) {
     from sourceSets.main.allJava
 }
 
-task javadocJar(type: Jar) {
+task javadocJar( type: Jar ) {
     from javadoc
+}
+
+distributions {
+    main {
+        contents {
+            from(project.rootDir) {
+                include 'README.*'
+            }
+            into("docs") {
+                from javadoc.outputs
+            }
+        }
+    }
 }
 
 assemble.dependsOn sourceJar
@@ -45,7 +59,7 @@ assemble.dependsOn javadocJar
 
 publishing {
     publications {
-        jar(MavenPublication) {
+        jar( MavenPublication ) {
             from components.java
 
             artifact sourceJar {
@@ -54,6 +68,12 @@ publishing {
 
             artifact javadocJar {
                 classifier "javadoc"
+            }
+        }
+        dist( MavenPublication ) {
+            artifact distZip {
+                extension "zip"
+                classifier "distribution"
             }
         }
     }
@@ -70,7 +90,7 @@ artifactory {
 
         }
         defaults {
-            publications 'jar'
+            publications 'jar', 'dist'
         }
     }
     resolve {
@@ -91,8 +111,7 @@ artifactory {
 def artifactoryBuildNum() {
     def num = []
     if( env.BUILD_NUMBER )
-        num << env.BUILD_NUMBER
-    else if( env.SOURCE_BUILD_NUMBER )
+        num << env.BUILD_NUMBER else if( env.SOURCE_BUILD_NUMBER )
         num << env.SOURCE_BUILD_NUMBER
     if( !num )
         num << System.currentTimeMillis()
