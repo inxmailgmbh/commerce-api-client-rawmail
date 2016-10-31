@@ -16,7 +16,7 @@ ext {
 }
 
 group 'com.inxmail.commerce.api'
-version '0.9.5'
+version '0.9.6'
 
 apply plugin: 'java'
 apply plugin: 'maven-publish'
@@ -69,8 +69,6 @@ publishing {
             artifact javadocJar {
                 classifier "javadoc"
             }
-        }
-        dist( MavenPublication ) {
             artifact distZip {
                 extension "zip"
                 classifier "distribution"
@@ -90,7 +88,7 @@ artifactory {
 
         }
         defaults {
-            publications 'jar', 'dist'
+            publications 'jar'
         }
     }
     resolve {
