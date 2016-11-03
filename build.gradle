@@ -8,6 +8,7 @@ buildscript {
     dependencies {
         //Check for the latest version here: http://plugins.gradle.org/plugin/com.jfrog.artifactory
         classpath "org.jfrog.buildinfo:build-info-extractor-gradle:4.4.7"
+        classpath "org.kordamp:markdown-gradle-plugin:1.1.0"
     }
 }
 
@@ -16,12 +17,13 @@ ext {
 }
 
 group 'com.inxmail.commerce.api'
-version '0.9.6'
+version '0.9.7'
 
 apply plugin: 'java'
 apply plugin: 'maven-publish'
 apply plugin: "com.jfrog.artifactory"
 apply plugin: 'java-library-distribution'
+apply plugin: "org.kordamp.markdown.convert"
 
 sourceCompatibility = 1.8
 
@@ -41,12 +43,17 @@ task javadocJar( type: Jar ) {
     from javadoc
 }
 
+markdownToHtml {
+    fencedCodeBlocks = true
+}
+
 distributions {
     main {
         contents {
             from(project.rootDir) {
-                include 'README.*'
+                include 'README.md'
             }
+            from markdownToHtml.outputs
             into("docs") {
                 from javadoc.outputs
             }
