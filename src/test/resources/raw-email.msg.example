@@ -1,0 +1,22 @@
+From: source@example.org
+To: recipient@example.org
+Subject: Test SendRawEmail
+Content-Type: multipart/alternative; 
+	boundary="----=_Part_0_1177377518.1478254143001"
+Date: Fri, 4 Nov 2016 11:09:07 +0100 (CET)
+MIME-Version: 1.0
+
+------=_Part_0_1177377518.1478254143001
+Content-Type: text/plain; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+SendRawEmail plain text.
+------=_Part_0_1177377518.1478254143001
+Content-Type: text/html; charset=us-ascii
+Content-Transfer-Encoding: 7bit
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=us-ascii"></head>
+<body><p>SendRawEmail</p></body></html>
+------=_Part_0_1177377518.1478254143001--
