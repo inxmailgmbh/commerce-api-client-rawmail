@@ -6,3 +6,5 @@
 *.iws
 out/
 build/
+/src/test/resources/settings.properties
+/src/test/resources/raw-email.msg
