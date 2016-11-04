@@ -9,11 +9,9 @@ import com.inxmail.commerce.api.rawmail.model.SendRawEmailRequest;
 import java.io.IOException;
 import javax.mail.MessagingException;
 import javax.mail.internet.MimeMessage;
-import javax.ws.rs.client.Client;
 import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
-import javax.ws.rs.core.Response;
 
 
 public class SendRawmailJerseyClient implements SendRawmailClient {
@@ -42,18 +40,18 @@ public class SendRawmailJerseyClient implements SendRawmailClient {
 
     @Override
     public SendEmailResult sendEmail( SendRawEmailRequest request ) {
-            try {
-                RawmailwebserviceRequest req;
-                if (request.getRawMessage().getInputStream() != null) {
-                    req = buildWebserviceRequestService.buildRequest( request.getRawMessage().getInputStream() );
-                }
-                else {
-                    req = buildWebserviceRequestService.buildRequest( request.getRawMessage().getData() );
-                }
-                return endpoint.request( MediaType.APPLICATION_JSON_TYPE ).post( Entity.entity( req, MediaType.APPLICATION_JSON_TYPE ), SendEmailResult.class );
+        try {
+            RawmailwebserviceRequest req;
+            if( request.getRawMessage().getInputStream() != null ) {
+                req = buildWebserviceRequestService.buildRequest( request.getRawMessage().getInputStream() );
             }
-            catch( IOException e ) {
-                throw new InvalidMessageDataException( e.getMessage(), e );
+            else {
+                req = buildWebserviceRequestService.buildRequest( request.getRawMessage().getData() );
             }
+            return endpoint.request( MediaType.APPLICATION_JSON_TYPE ).post( Entity.entity( req, MediaType.APPLICATION_JSON_TYPE ), SendEmailResult.class );
+        }
+        catch( IOException e ) {
+            throw new InvalidMessageDataException( e.getMessage(), e );
+        }
     }
 }

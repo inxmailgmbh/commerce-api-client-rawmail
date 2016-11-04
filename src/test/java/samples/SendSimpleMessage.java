@@ -20,21 +20,21 @@ public class SendSimpleMessage {
             properties.load( SendSimpleMessage.class.getResourceAsStream( "/settings.properties" ) );
 
             Message message = new Message()
-                    .withSubject( new Content("Test SendSimpleMail") )
+                    .withSubject( new Content( "Test SendSimpleMail" ) )
                     .withBody( new Body()
-                        .withText( new Content( "SendSimpleMessage plain text." ) )
-                        .withHtml( new Content("<html><body><p>SendSimpleMessage</p></body></html>") )
+                            .withText( new Content( "SendSimpleMessage plain text." ) )
+                            .withHtml( new Content( "<html><body><p>SendSimpleMessage</p></body></html>" ) )
                     );
 
-            SendEmailRequest request = new SendEmailRequest(  )
+            SendEmailRequest request = new SendEmailRequest()
                     .withSource( properties.getProperty( "message.from" ) )
-                    .withDestination( new Destination(  ).withToAddresses( properties.getProperty( "message.to" ) ) )
+                    .withDestination( new Destination().withToAddresses( properties.getProperty( "message.to" ) ) )
                     .withMessage( message );
             SendRawmailClient client = SendRawmailClientFactory.instance().createClient( properties.getProperty( "api.space" ), properties.getProperty( "api.key" ), properties.getProperty( "api.secret" ) );
 
             SendEmailResult result = client.sendEmail( request );
 
-            System.out.println(result);
+            System.out.println( result );
         }
         catch( IOException e ) {
             e.printStackTrace();
