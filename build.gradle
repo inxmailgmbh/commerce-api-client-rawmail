@@ -75,7 +75,7 @@ publishing {
                     resolveStrategy = Closure.DELEGATE_FIRST
                     name "Client SDK for the SendRawMail endpoint in the Inxmail Commerce API"
                     description "This library provides convenient tools to use the \"send raw email\" feature of the Inxmail Commerce API."
-                    url "https://github.com/inxmailgmbh/api-client-rawmail"
+                    url "https://github.com/inxmailgmbh/commerce-api-client-rawmail"
                     organization {
                         name "Inxmail GmbH"
                         url "http://www.inxmail.de"
@@ -96,8 +96,8 @@ publishing {
                         }
                     }
                     scm {
-                        url "https://github.com/inxmailgmbh/api-client-rawmail"
-                        connection "scm:git:https://github.com/inxmailgmbh/api-client-rawmail.git"
+                        url "https://github.com/inxmailgmbh/commerce-api-client-rawmail"
+                        connection "scm:git:https://github.com/inxmailgmbh/commerce-api-client-rawmail.git"
                     }
                 }
             }
