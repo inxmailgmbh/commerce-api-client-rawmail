@@ -50,11 +50,11 @@ markdownToHtml {
 distributions {
     main {
         contents {
-            from(project.rootDir) {
+            from( project.rootDir ) {
                 include 'README.md'
             }
             from markdownToHtml.outputs
-            into("docs") {
+            into( "docs" ) {
                 from javadoc.outputs
             }
         }
@@ -67,6 +67,41 @@ assemble.dependsOn javadocJar
 publishing {
     publications {
         jar( MavenPublication ) {
+            pom.withXml {
+                NodeList children = asNode().children()
+                Node dependencies = children.find {it.name().localPart == 'dependencies'} as Node
+
+                children[children.indexOf( dependencies ) - 1] + {
+                    resolveStrategy = Closure.DELEGATE_FIRST
+                    name "Client SDK for the SendRawMail endpoint in the Inxmail Commerce API"
+                    description "This library provides convenient tools to use the \"send raw email\" feature of the Inxmail Commerce API."
+                    url "https://github.com/inxmailgmbh/commerce-api-client-rawmail"
+                    organization {
+                        name "Inxmail GmbH"
+                        url "http://www.inxmail.de"
+                    }
+                    licenses {
+                        license {
+                            name "Apache License, Version 2.0"
+                            url "https://www.apache.org/licenses/LICENSE-2.0"
+                            distribution "repo"
+                        }
+                    }
+                    developers {
+                        developer {
+                            id "inxmailcommerce"
+                            name "Inxmail Commerce"
+                            organization "Inxmail GmbH"
+                            organizationUrl "https://github.com/inxmailgmbh"
+                        }
+                    }
+                    scm {
+                        url "https://github.com/inxmailgmbh/commerce-api-client-rawmail"
+                        connection "scm:git:https://github.com/inxmailgmbh/commerce-api-client-rawmail.git"
+                    }
+                }
+            }
+
             from components.java
 
             artifact sourceJar {
