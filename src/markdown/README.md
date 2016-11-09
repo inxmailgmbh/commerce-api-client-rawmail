@@ -4,6 +4,25 @@ Client SDK for the SendRawMail endpoint in the Inxmail Commerce API
 This library provides convenient tools to use the "send raw email" feature of the Inxmail Commerce API.
 For details see the JavaDoc API reference.
 
+Getting the SDK
+---------------
+The SDK is available as a Maven dependency from Inxmail GmbH's Maven repository:
+ 
+[ ![Download](https://api.bintray.com/packages/inxmailgmbh/inxmail/commerce-api-client-rawmail/images/download.svg) ](https://bintray.com/inxmailgmbh/inxmail/commerce-api-client-rawmail/_latestVersion)
+
+It is also available from [Bintray JCenter](https://bintray.com/bintray/jcenter?filterByPkgName=commerce-api-client-rawmail), which contains most of Maven Central.
+
+Coordinates (see above for latest version):
+```xml
+<dependency>
+  <groupId>com.inxmail.commerce.api</groupId>
+  <artifactId>commerce-api-client-rawmail</artifactId>
+  <version>1.0.0</version>
+</dependency>
+```
+
+Sources, including samples, are available on [Github](https://github.com/inxmailgmbh/commerce-api-client-rawmail).
+
 Basic example
 -------------
 ```
