@@ -13,6 +13,7 @@ The SDK is available as a Maven dependency from Inxmail GmbH's Maven repository:
 It is also available from [Bintray JCenter](https://bintray.com/bintray/jcenter?filterByPkgName=commerce-api-client-rawmail), which contains most of Maven Central.
 
 Coordinates (see above for latest version):
+
 ```xml
 <dependency>
   <groupId>com.inxmail.commerce.api</groupId>
@@ -25,6 +26,7 @@ Sources, including samples, are available on [Github](https://github.com/inxmail
 
 Basic example
 -------------
+
 ```
 String spaceId = "...";
 String apiKey = "...";
