@@ -111,10 +111,6 @@ publishing {
             artifact javadocJar {
                 classifier "javadoc"
             }
-            artifact distZip {
-                extension "zip"
-                classifier "distribution"
-            }
         }
     }
 }
