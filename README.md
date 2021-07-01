@@ -7,10 +7,14 @@ For details see the JavaDoc API reference.
 Getting the SDK
 ---------------
 The SDK is available as a Maven dependency from Inxmail GmbH's Maven repository:
- 
-[ ![Download](https://api.bintray.com/packages/inxmailgmbh/inxmail/commerce-api-client-rawmail/images/download.svg) ](https://bintray.com/inxmailgmbh/inxmail/commerce-api-client-rawmail/_latestVersion)
 
-It is also available from [Bintray JCenter](https://bintray.com/bintray/jcenter?filterByPkgName=commerce-api-client-rawmail), which contains most of Maven Central.
+```xml
+<repository>
+  <id>inxmail-artefacts</id>
+  <name>inxmail artefacts</name>
+  <url>https://inxmail-artefacts.inxshare.de/repo</url>
+</repository>
+```
 
 Coordinates (see above for latest version):
 
