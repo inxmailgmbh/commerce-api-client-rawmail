@@ -4,9 +4,9 @@
  *
  * Licensed under the Apache License, Version 2.0 (the "License"). You may not use this file except in compliance with
  * the License. A copy of the License is located at
- * 
+ *
  * http://aws.amazon.com/apache2.0
- * 
+ *
  * or in the "license" file accompanying this file. This file is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
  * CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions
  * and limitations under the License.
@@ -17,7 +17,10 @@ import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 import java.io.Serializable;
+import java.util.Arrays;
 import java.util.Date;
+import java.util.List;
+import java.util.Objects;
 
 
 /**
@@ -31,11 +34,45 @@ public class SendEmailResult implements Serializable, Cloneable {
 
     private Date acceptedDate;
 
+    private List<RecipientWithSendingId> recipientsWithSendingId;
+
+
+    static class RecipientWithSendingId {
+        private String recipient;
+        private String relaySendingId;
+        private String type;
+        private String error;
+
+        public RecipientWithSendingId( String recipient, String relaySendingId, String type, String error ) {
+            this.recipient = recipient;
+            this.relaySendingId = relaySendingId;
+            this.type = type;
+            this.error = error;
+        }
+
+        public String getRecipient() {
+            return recipient;
+        }
+
+        public String getRelaySendingId() {
+            return relaySendingId;
+        }
+
+        public String getType() {
+            return type;
+        }
+
+        public String getError() {
+            return error;
+        }
+    }
+
 
     @JsonCreator( mode = JsonCreator.Mode.PROPERTIES )
-    public SendEmailResult( @JsonProperty( "relaySendingId" ) String relaySendingId, @JsonProperty( "acceptedDate" ) Date acceptedDate ) {
+    public SendEmailResult( @JsonProperty( "relaySendingId" ) String relaySendingId, @JsonProperty( "acceptedDate" ) Date acceptedDate, @JsonProperty( "recipientsWithSendingId" ) List<RecipientWithSendingId> recipientsWithSendingId ) {
         this.relaySendingId = relaySendingId;
         this.acceptedDate = acceptedDate;
+        this.recipientsWithSendingId = recipientsWithSendingId;
     }
 
     /**
@@ -59,6 +96,17 @@ public class SendEmailResult implements Serializable, Cloneable {
     }
 
     /**
+     * <p>
+     * The list of recipients with the corresponding relay sending ID returned by the Inxmail Commerce API.
+     * </p>
+     *
+     * @return
+     */
+    public List<RecipientWithSendingId> getRecipientsWithSendingId() {
+        return recipientsWithSendingId;
+    }
+
+    /**
      * Returns a string representation of this object; useful for testing and debugging.
      *
      * @return A string representation of this object.
@@ -71,35 +119,26 @@ public class SendEmailResult implements Serializable, Cloneable {
         if( getRelaySendingId() != null )
             sb.append( "RelaySendingId: " + getRelaySendingId() + "," );
         if( getAcceptedDate() != null )
-            sb.append( "AcceptedDate: " + getAcceptedDate() );
+            sb.append( "AcceptedDate: " + getAcceptedDate() + "," );
+        if( getRecipientsWithSendingId() != null )
+            sb.append( "RecipientsWithSendingId:" + Arrays.toString( getRecipientsWithSendingId().toArray() ) );
         sb.append( "}" );
         return sb.toString();
     }
 
     @Override
-    public boolean equals( Object obj ) {
-        if( this == obj )
+    public boolean equals( Object o ) {
+        if( this == o )
             return true;
-        if( obj == null )
+        if( o == null || getClass() != o.getClass() )
             return false;
-
-        if( obj instanceof SendEmailResult == false )
-            return false;
-        SendEmailResult other = (SendEmailResult)obj;
-        if( other.getRelaySendingId() == null ^ this.getRelaySendingId() == null )
-            return false;
-        if( other.getRelaySendingId() != null && other.getRelaySendingId().equals( this.getRelaySendingId() ) == false )
-            return false;
-        return true;
+        SendEmailResult that = (SendEmailResult)o;
+        return Objects.equals( relaySendingId, that.relaySendingId ) && Objects.equals( acceptedDate, that.acceptedDate ) && Objects.equals( recipientsWithSendingId, that.recipientsWithSendingId );
     }
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int hashCode = 1;
-
-        hashCode = prime * hashCode + ((getRelaySendingId() == null) ? 0 : getRelaySendingId().hashCode());
-        return hashCode;
+        return Objects.hash( relaySendingId, acceptedDate, recipientsWithSendingId );
     }
 
     @Override
