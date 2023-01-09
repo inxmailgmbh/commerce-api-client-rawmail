@@ -43,7 +43,8 @@ public class SendEmailResult implements Serializable, Cloneable {
         private String type;
         private String error;
 
-        public RecipientWithSendingId( String recipient, String relaySendingId, String type, String error ) {
+        @JsonCreator( mode = JsonCreator.Mode.PROPERTIES )
+        public RecipientWithSendingId(@JsonProperty( "recipient" ) String recipient, @JsonProperty( "relaySendingId" ) String relaySendingId, @JsonProperty( "type" ) String type, @JsonProperty( "error" ) String error ) {
             this.recipient = recipient;
             this.relaySendingId = relaySendingId;
             this.type = type;
